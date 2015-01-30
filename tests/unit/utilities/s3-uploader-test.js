@@ -37,7 +37,8 @@ describe('s3-uploader', function() {
       it('uploads the file successfully', function() {
         var params = {
           cwd: process.cwd(),
-          filePath: 'tests/fixtures/dist/assets/app.css'
+          filePath: 'tests/fixtures/dist/assets/app.css',
+          noCache: true
         };
 
         mockClient.resolveUpload();
@@ -48,6 +49,7 @@ describe('s3-uploader', function() {
             assert.equal(mockClient.params['Bucket'], 'test-bucket');
             assert.equal(mockClient.params['ACL'], 'public-read');
             assert.equal(mockClient.params['ContentType'], 'text/css');
+            assert.equal(mockClient.params['CacheControl'], 'max-age=0');
             assert.equal(mockClient.params['Key'], 'tests/fixtures/dist/assets/app.css');
           }, function() {
             assert.ok(false, 'Should not have rejected');

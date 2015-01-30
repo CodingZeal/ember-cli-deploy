@@ -29,7 +29,8 @@ describe('deploy-assets task', function() {
         region: 'region',
         bucket: 'bucket'
       },
-      filePattern: '**/*.{js,css,png,gif,jpg}'
+      filePattern: '**/*.{js,css,png,gif,jpg}',
+      noCache: 'assets/app.css'
     }
   });
 
